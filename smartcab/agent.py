@@ -134,7 +134,9 @@ class LearningAgent(Agent):
             action = random.choice(self.valid_actions)
 
         else :
-            action, _ = max(self.Q[state].iteritems(), key=lambda x:x[1])
+            maxQ = self.get_maxQ(state)
+            action = random.choice([key for key in self.Q[state] if self.Q[state][key]==maxQ])
+            
 
         return action
 
